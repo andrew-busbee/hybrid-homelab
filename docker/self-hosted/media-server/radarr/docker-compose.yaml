@@ -1,0 +1,36 @@
+services:
+  radarr:
+    image: ghcr.io/hotio/radarr:latest
+    container_name: radarr
+    environment:
+      - TZ=${TZ}
+      - PUID=${PUID}
+      - PGID=${PGID}
+    volumes:
+      - config:/config
+      - movies:/movies   
+      - movieRecycle:/recycle 
+      - complete:/complete 
+      - movieLibrary:/plexMovieLibrary
+      - moviesHorror:/plexMoviesHorror #Optional
+    ports:
+      - ${PORT_NUMBER}:7878/tcp
+    restart: always
+    
+volumes:
+  config:
+  movies:
+    name: movies  
+    external: true   
+  movieRecycle:
+    name: movieRecycle  
+    external: true  
+  complete:
+    name: complete
+    external: true    
+  movieLibrary:
+    name: movieLibrary 
+    external: true     
+  moviesHorror:
+    name: moviesHorror
+    external: true  
