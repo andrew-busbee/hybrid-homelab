@@ -1,0 +1,15 @@
+services:
+  watchtower:
+    image: containrrr/watchtower:latest
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      WATCHTOWER_CLEANUP: true
+      WATCHTOWER_INCLUDE_STOPPED: true
+      WATCHTOWER_INCLUDE_RESTARTING: true
+      TZ: ${TZ}
+      WATCHTOWER_ROLLING_RESTART: true
+      WATCHTOWER_SCHEDULE: ${WATCHTOWER_SCHEDULE} #Format "0 0 6 * * *"
+      #WATCHTOWER_POLL_INTERVAL: 30 # Interval in seconds.  Default is 86400 (24 hours) 
+    restart: always
