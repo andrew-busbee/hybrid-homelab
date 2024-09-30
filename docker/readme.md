@@ -5,7 +5,7 @@ Welcome to the **Docker** folder of my **Hybrid Homelab**! Here, you'll find the
 ## 🌟 What's Cooking?
 - **Self-Hosted Services**: Dive into the configurations that power my personal tech playground at home
 - **Cloud Services**: Explore the magical setups that flourish in the cloud
-- **Dual-Deployed Services**: Some of the apps I have running both locally and in the cloud for varous pruposes
+- **Dual-Deployed Services**: Some of the apps I have running as instances both locally and in the cloud
 
 ## 🚀 How to Use
 1. Pick a service.
