@@ -1,0 +1,12 @@
+services:
+    amcrest2mqtt:
+        container_name: amcrest2mqtt
+        image: dchesterton/amcrest2mqtt:latest
+        restart: always
+        environment:
+            AMCREST_HOST: ${AMCREST_HOST}
+            AMCREST_PASSWORD: ${AMCREST_PASSWORD}
+            MQTT_HOST: ${MQTT_HOST}
+            MQTT_USERNAME: ${MQTT_USERNAME}
+            MQTT_PASSWORD: ${MQTT_PASSWORD}
+            HOME_ASSISTANT: ${HOME_ASSISTANT}  # True or false based on if MQTT broker is on HA
