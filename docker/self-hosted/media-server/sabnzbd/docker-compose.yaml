@@ -1,0 +1,25 @@
+services:
+  sabnzbd:
+    image: lscr.io/linuxserver/sabnzbd:latest
+    container_name: sabnzbd
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - config:/config
+      - incomplete:/incomplete
+      - complete:/complete
+    ports:
+      - ${PORT_NUMBER_HTTP}:8080/tcp  #HTTP
+#      - ${PORT_NUMBER_HTTPS}:9090/tcp  #HTTPS
+    restart: unless-stopped
+
+volumes:
+  config: 
+  incomplete:
+    name: incomplete  
+    external: true
+  complete:
+    name: complete  
+    external: true
