@@ -1,0 +1,16 @@
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    restart: always
+    ports:
+      - ${PORT_NUMBER}:3000
+    volumes:
+      - homepageConfig:/app/config 
+      - /var/run/docker.sock:/var/run/docker.sock:ro #optional
+
+volumes:
+  homepageConfig:
+    # Next two lines required only if mapping to external location such as NAS NFS location
+    name: homepageConfig
+    external: true            
