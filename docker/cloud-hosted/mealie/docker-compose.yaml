@@ -1,0 +1,36 @@
+services:
+  mealie:
+    image: ghcr.io/mealie-recipes/mealie:latest 
+    container_name: mealie
+    restart: always
+    ports:
+        - "8001:9000" 
+    deploy:
+      resources:
+        limits:
+          memory: 1000M 
+    volumes:
+      - mealie-data:/app/data/
+    environment:
+      # Set Backend ENV Variables Here
+      ALLOW_SIGNUP: false
+      PUID: ${PUID}
+      PGID: ${PGID}
+      TZ: ${TZ}
+      MAX_WORKERS: 1
+      WEB_CONCURRENCY: 1
+      BASE_URL: ${BASE_URL}
+      LOG_LEVEL: info #critical, error, warning, info, debug, trace
+      SECURITY_MAX_LOGIN_ATTEMPTS: ${SECURITY_MAX_LOGIN_ATTEMPTS}
+      SECURITY_USER_LOCKOUT_TIME: ${SECURITY_USER_LOCKOUT_TIME}
+      # Email Configuration
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT}
+      SMTP_FROM_NAME: ${SMTP_FROM_NAME}
+      SMTP_AUTH_STRATEGY: ${SMTP_AUTH_STRATEGY} # Options: 'TLS', 'SSL', 'NONE'
+      SMTP_FROM_EMAIL: ${SMTP_FROM_EMAIL}
+      SMTP_USER: ${SMTP_USER}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}
+
+volumes:
+  mealie-data:
