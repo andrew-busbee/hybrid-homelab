@@ -1,0 +1,15 @@
+services:
+  overseerr:
+    image: lscr.io/linuxserver/overseerr:latest
+    container_name: overseerr
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - config:/config
+    ports:
+      - ${PORT_NUMBER}:5055
+    restart: always
+volumes:
+  config:
