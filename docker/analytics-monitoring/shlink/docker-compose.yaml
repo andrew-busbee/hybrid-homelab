@@ -1,0 +1,64 @@
+services:
+  shlink-db:
+    image: postgres:16
+    container_name: Shlink-DB
+    hostname: shlink-db
+    security_opt:
+      - no-new-privileges:true
+#    healthcheck:
+#      test: ["CMD", "pg_isready", "-q", "-d", "${POSTGRES_DB{POSTGRES_DB}", "-U", "${POSTGRES_USER}"]
+#      interval: 10s
+#      timeout: 5s
+#      retries: 5
+    volumes:
+      - shlinkdb:/var/lib/postgresql/data:rw
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    restart: always
+
+  shlink:
+    image: shlinkio/shlink:stable
+    container_name: Shlink
+    hostname: shlink
+    security_opt:
+      - no-new-privileges:true
+    ports:
+      - ${SHLINK_PORT}:8080
+    environment:
+      - TIMEZONE: ${TIMEZONE}
+      - INITIAL_API_KEY: ${INITIAL_API_KEY}
+      - DB_DRIVER: postgres
+      - DB_NAME: ${DB_NAME}
+      - DB_USER: ${DB_USER}
+      - DB_PASSWORD: ${DB_PASSWORD}
+      - DB_HOST: ${DB_HOST}
+      - DB_PORT: 5432
+      - DEFAULT_DOMAIN: ${DEFAULT_DOMAIN}
+      - IS_HTTPS_ENABLED: true 
+      - GEOLITE_LICENSE_KEY: ${GEOLITE_LICENSE_KEY}
+    restart: always
+    depends_on:
+      shlink-db:
+        condition: service_started
+
+#get to this by going to ipaddress:PORT.  It then uses the container above for the short URLs.  Add more of these for any other domains and just change the shlink server name and url
+  shlink-web:
+    image: shlinkio/shlink-web-client:stable
+    container_name: Shlink-WEB
+    hostname: shlink-web
+    security_opt:
+      - no-new-privileges:true
+    ports:
+      - ${SHLINK_WEB_PORT1}:8080
+    environment:
+      - SHLINK_SERVER_NAME: ${SHLINK_SERVER_NAME}
+      - SHLINK_SERVER_URL: ${SHLINK_SERVER_URL}
+      - SHLINK_SERVER_API_KEY: ${SHLINK_SERVER_API_KEY}
+    restart: always
+    depends_on:
+      - shlink
+
+volumes:
+  shlinkdb:      
