@@ -1,0 +1,17 @@
+services:
+  kanboard:
+    image: kanboard/kanboard:latest
+    container_name: Kanboard
+    ports:
+      - ${PORT}:80
+    volumes:
+      - kanboard_data:/var/www/app/data
+      - kanboard_plugins:/var/www/app/plugins
+    environment:
+      - PLUGIN_INSTALLER=true
+      - ENABLE_XFRAME=false #set to true to block using iframes
+    restart: always
+    
+volumes:
+  kanboard_data:
+  kanboard_plugins:
