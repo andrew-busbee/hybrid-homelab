@@ -1,0 +1,12 @@
+services:
+  excalidraw:
+    container_name: Excalidraw
+    image: excalidraw/excalidraw:latest
+    ports:
+      - ${PORT}:80
+    restart: always
+    stdin_open: true
+    environment:
+      - NODE_ENV=production
+    healthcheck:
+     test: curl -f http://localhost:80/ || exit 1      
