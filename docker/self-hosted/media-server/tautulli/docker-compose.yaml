@@ -1,0 +1,15 @@
+services:
+  tautulli:
+    image: ghcr.io/linuxserver/tautulli:latest
+    container_name: tautulli
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    ports:
+      - ${PORT_NUMBER}:8181
+    volumes:
+      - config:/config
+    restart: always
+volumes:
+  config:
