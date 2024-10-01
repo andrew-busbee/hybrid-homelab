@@ -8,8 +8,8 @@ services:
       WATCHTOWER_CLEANUP: true
       WATCHTOWER_INCLUDE_STOPPED: true
       WATCHTOWER_INCLUDE_RESTARTING: true
-      TZ: ${TZ}
+      TZ: "America/Chicago"
       WATCHTOWER_ROLLING_RESTART: true
-      WATCHTOWER_SCHEDULE: ${WATCHTOWER_SCHEDULE} #Format "0 0 6 * * *"
+      WATCHTOWER_SCHEDULE: "0 0 6 * * *" # Check daily at 6am TZ time
       #WATCHTOWER_POLL_INTERVAL: 30 # Interval in seconds.  Default is 86400 (24 hours) 
     restart: always
