@@ -1,0 +1,22 @@
+services:
+  watchtower:
+    image: checkmk/check-mk-cloud:2.3.0p17 
+    container_name: checkmk
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - monitoring:/omd/sites
+    tmpfs:
+      - /opt/omd/sites/cmk/tmp:uid=${UID},gid=${GID}
+    ulimits:
+      nofile: 1024
+    ports:
+      - ${PORT1}:5000
+      - ${PORT2}:8000
+    restart: always
+    networks:
+      checkmk_network:
+      
+volumes:
+  monitoring:
+networks:
+    checkmk_network:
