@@ -1,6 +1,6 @@
 # 🌐 Hybrid Homelab
 
-Welcome to my **Hybrid Homelab**! This repository combines local and cloud-based server configurations, providing a flexible and scalable environment for experimentation and learning.
+Welcome to my **Hybrid Homelab**! This repository combines local and cloud-based server configurations, providing a flexible and scalable environment for experimentation and learning.  This is where I keep all the goodies and configurations that power my home-based tech lab.
 
 ## 🚀 Why Hybrid?
 The term "Hybrid Homelab" reflects the integration of both on-premises and cloud resources. This approach allows for:
@@ -8,7 +8,9 @@ The term "Hybrid Homelab" reflects the integration of both on-premises and cloud
 - Access to diverse technologies
 - A more resilient and scalable setup
 
-## 🧰 What's Included?
+## 🧰 What's Inside?
+- **Docker Compose** files to spin up various services
+
 - **Analytics & Monitoring**: Applications for tracking the performance and health of services, including web analytics.
 - **Automation & Security**: Scripts and tools to streamline deployment, management, and task automation.
 - **Content Management**: Applications for managing and publishing content, including blogs and documentation.
@@ -20,5 +22,9 @@ The term "Hybrid Homelab" reflects the integration of both on-premises and cloud
 - **Storage & Backup**: Solutions for managing data storage, backups, and file synchronization.
 - **Virtualization**: Tools for managing virtual machines, containers, and orchestration platforms.
 
+## 🌐 Homelab Goals:
+- Automate everything 🧑‍💻
+- Centralized control of services
+- Fun learning environment
 
 Feel free to explore and enjoy the journey of building your own hybrid environment!
