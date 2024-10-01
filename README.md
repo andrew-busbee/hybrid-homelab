@@ -10,7 +10,7 @@ The term "Hybrid Homelab" reflects the integration of both on-premises and cloud
 
 ## 🧰 What's Included?
 - **Analytics & Monitoring**: Applications for tracking the performance and health of services, including web analytics.
-- **Automation**: Scripts and tools to streamline deployment, management, and task automation.
+- **Automation & Security**: Scripts and tools to streamline deployment, management, and task automation.
 - **Content Management**: Applications for managing and publishing content, including blogs and documentation.
 - **Dashboards**: applications that provide intuitive visual interfaces for monitoring and accessing various services within your homelab. 
 - **Media Server**: Applications for media streaming, libraries, and home entertainment.
