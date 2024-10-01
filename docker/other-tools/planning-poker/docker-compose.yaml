@@ -1,0 +1,11 @@
+services:
+  planning-poker:
+    image: axeleroy/self-host-planning-poker:latest
+    container_name: planning-poker
+    restart: always  
+    ports:
+      - ${PORT}:8000
+    volumes:
+      - data:/data
+volumes:
+  data: 
