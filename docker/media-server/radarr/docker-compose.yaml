@@ -7,7 +7,7 @@ services:
       - PUID=${PUID}
       - PGID=${PGID}
     volumes:
-      - config:/config:rw
+      - config:/config
       - movies:/movies   
       - movieRecycle:/recycle 
       - complete:/complete 
