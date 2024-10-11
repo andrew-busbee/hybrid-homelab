@@ -3,7 +3,7 @@ services:
     image: ghcr.io/wg-easy/wg-easy:latest
     container_name: ${container_name}
     volumes:
-      - etc_wireguard:/etc/wireguard
+      - data:/etc/wireguard
     ports:
       - "${PORT1}:8001/udp"  #VPN Port
       - "${PORT2}:8003/tcp"  #UI Port
@@ -51,4 +51,4 @@ services:
       - UI_CHART_TYPE=2 # (0 Charts disabled, 1 # Line chart, 2 # Area chart, 3 # Bar chart)
 
 volumes:
-  etc_wireguard:
+  data:
