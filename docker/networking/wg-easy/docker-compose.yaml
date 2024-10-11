@@ -25,7 +25,7 @@ services:
       # Web UI Password.  If not set then there is no password for the admin UI
       #see this site for how to generate hash https://github.com/wg-easy/wg-easy/blob/master/How_to_generate_an_bcrypt_hash.md
       #important : Please note: don't wrap the generated hash password in single quotes when you use docker-compose.yml. Instead, replace each $ symbol with two $$ symbols.
-      #- PASSWORD_HASH=${PASSWORD_HASH}
+      - PASSWORD_HASH=${PASSWORD_HASH}
       # If you want to use different ports, you can change them here, but you must also change them in the "ports" section above to match
       - WG_PORT=${PORT1} # The public UDP port of your VPN server
       - PORT=${PORT2} # TCP port for Web UI
