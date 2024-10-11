@@ -1,0 +1,22 @@
+services:
+  adguard:
+    image: adguard/adguardhome:latest
+    container_name: AdGuard
+    ports:
+      - ${DNS_PORT}:53/tcp
+      - ${DNS_PORT}:53/udp
+      - ${ADMIN_PORT}:80/tcp
+    mem_limit: 1g
+    cpu_shares: 768
+    security_opt:
+      - no-new-privileges:true
+    restart: always
+    network_mode: host
+    volumes:
+      - config:/opt/adguardhome/conf:rw
+      - work:/opt/adguardhome/work:rw
+    environment:
+      TZ: ${TZ}
+volumes:
+  config:
+  work:
