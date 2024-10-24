@@ -12,7 +12,7 @@ services:
       - /dev/dri/renderD128:/dev/dri/renderD128 # for intel hwaccel: needs to be updated for your hardware
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - config/config.yml:/config/config.yml:rw # This is where config.yml is stored to hold camera info, etc.
+      - /opt/frigate/config.yml:/config/config.yml:rw # This is where config.yml is stored to hold camera info, etc.
       - media:/media/frigate  # map this folder to either a local or NAS folder.  Ensure you will have enough space
       - type: tmpfs # Optional: 1GB of memory, reduces SSD/SD Card wear
         target: /tmp/cache
@@ -28,5 +28,4 @@ services:
     environment:
       FRIGATE_RTSP_PASSWORD: ${FRIGATE_RTSP_PASSWORD}     
 volumes:
-  config:
   media:
