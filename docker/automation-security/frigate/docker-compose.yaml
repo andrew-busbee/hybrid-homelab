@@ -7,9 +7,9 @@ services:
     #cap_add:
     #  - CAP_PERFMON
     shm_size: "128MB" # update for your cameras 
-    #devices:
-     # - /dev/bus/usb:/dev/bus/usb
-     # - /dev/dri/renderD128:/dev/dri/renderD128 # for intel hwaccel: needs to be updated for your hardware
+    devices:
+      - /dev/bus/usb:/dev/bus/usb
+      - /dev/dri/renderD128:/dev/dri/renderD128 # for intel hwaccel: needs to be updated for your hardware
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - config:/config/config.yml:rw # This is where config.yml is stored to hold camera info, etc.
