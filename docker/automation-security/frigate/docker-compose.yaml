@@ -7,7 +7,7 @@ services:
     #cap_add:
     #  - CAP_PERFMON
     shm_size: "128MB" # update for your cameras 
-    devices:
+    #devices:
      # - /dev/bus/usb:/dev/bus/usb
      # - /dev/dri/renderD128:/dev/dri/renderD128 # for intel hwaccel: needs to be updated for your hardware
     volumes:
