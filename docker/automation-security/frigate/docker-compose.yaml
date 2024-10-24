@@ -13,7 +13,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ${CONFIG_PATH}/config.yml:/config/config.yml:rw # This is where config.yml is stored to hold camera info, etc.
-      - /frigate:/media/frigate  # map this folder to either a local or NAS folder.  Ensure you will have enough space
+      - ${MEDIA_PATH}:/media/frigate  # map this folder to either a local or NAS folder.  Ensure you will have enough space
 #      - type: tmpfs # Optional: 1GB of memory, reduces SSD/SD Card wear
 #        target: /tmp/cache
 #        tmpfs:
