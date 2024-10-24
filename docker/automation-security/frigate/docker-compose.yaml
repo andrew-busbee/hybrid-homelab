@@ -3,7 +3,7 @@ services:
     container_name: frigate
     privileged: true
     restart: unless-stopped
-    image: ghcr.io/blakeblackshear/frigate:stable
+    image: ghcr.io/blakeblackshear/frigate:stable-rk
     cap_add:
       - CAP_PERFMON
     shm_size: "256mb" # update for your cameras 
