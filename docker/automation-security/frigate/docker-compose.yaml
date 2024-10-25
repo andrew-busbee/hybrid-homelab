@@ -29,3 +29,6 @@ services:
       FRIGATE_RTSP_PASSWORD: ${FRIGATE_RTSP_PASSWORD}     
 volumes:
   media:
+    # Next two lines required only if mapping to external location such as NAS NFS location
+    name: media
+    external: true    
