@@ -1,0 +1,61 @@
+services:
+  ghostfolio-redis:
+    image: redis
+    container_name: Ghostfolio-REDIS
+    hostname: ghostfolio-redis
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli ping || exit 1"]
+    user: ${UID}:${GID}
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - ghostfolio_redis:/data
+    restart: on-failure:5
+
+  ghostfolio-db:
+    image: postgres:17
+    container_name: Ghostfolio-DB
+    hostname: ghostfolio-db
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-d", "ghostfoliodb", "-U", "ghostfoliouser"]
+      timeout: 45s
+      interval: 10s
+      retries: 10
+    volumes:
+      - ghostfolio_db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    restart: on-failure:5
+
+  ghostfolio:
+    image: ghostfolio/ghostfolio:latest
+    container_name: Ghostfolio
+    hostname: ghostfolio
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - NODE_ENV=production
+      - ACCESS_TOKEN_SALT=${ACCESS_TOKEN_SALT} #32 characters
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY} #32 characters
+      - REDIS_HOST=ghostfolio-redis
+      - REDIS_PASSWORD=
+      - REDIS_PORT=6379
+      - DATABASE_URL=postgresql://ghostfoliouser:ghostfoliopass@ghostfolio-db:5432/ghostfoliodb?sslmode=prefer
+    ports:
+      - ${PORT}:3333
+    restart: on-failure:5
+    depends_on:
+      ghostfolio-db:
+        condition: service_started
+      ghostfolio-redis:
+        condition: service_healthy
+
+volumes:
+  ghostfolio_redis:
+  ghostfolio_db:
