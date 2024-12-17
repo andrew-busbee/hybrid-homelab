@@ -1,0 +1,11 @@
+services:
+  actual_server:
+    image: actualbudget/actual-server:latest
+    container_name: Actual
+    security_opt:
+      - no-new-privileges:true
+    ports:
+      - ${PORT}:5006
+    volumes:
+      - ${PATH}:/data:rw
+    restart: always
