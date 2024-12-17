@@ -6,11 +6,11 @@ services:
     security_opt:
       - no-new-privileges:true
     command: ['redis-server', '--requirepass', $REDIS_PASSWORD]
-    healthcheck:
-      test: ['CMD-SHELL', 'redis-cli --pass "$REDIS_PASSWORD" ping | grep PONG']
-      interval: 10s
-      timeout: 5s
-      retries: 5      
+    #healthcheck:
+    #  test: ['CMD-SHELL', 'redis-cli --pass "$REDIS_PASSWORD" ping | grep PONG']
+    #  interval: 10s
+    #  timeout: 5s
+    #  retries: 5      
     user: ${UID}:${GID}
     environment:
       - TZ=${TZ}
@@ -32,11 +32,11 @@ services:
       - SETUID
     security_opt:
       - no-new-privileges:true
-    healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}']
-      timeout: 5s #45s
-      interval: 10s
-      retries: 5 #10
+    #healthcheck:
+    #  test: ['CMD-SHELL', 'pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}']
+    #  timeout: 5s #45s
+    #  interval: 10s
+    #  retries: 5 #10
     volumes:
       - ghostfolio_db:/var/lib/postgresql/data
     environment:
