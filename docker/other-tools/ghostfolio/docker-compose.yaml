@@ -46,7 +46,7 @@ services:
       - REDIS_HOST=ghostfolio-redis
       - REDIS_PASSWORD=
       - REDIS_PORT=6379
-      - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@ghostfolio-db:5432/ghostfoliodb?sslmode=prefer
+      - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@ghostfolio-db:5432/${POSTGRES_DB}?sslmode=prefer
     ports:
       - ${PORT}:3333
     restart: on-failure:5
