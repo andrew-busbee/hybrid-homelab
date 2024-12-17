@@ -7,5 +7,5 @@ services:
     ports:
       - ${PORT}:5006
     volumes:
-      - ${PATH}:/data:rw
+      - ${PATH}:/data #:rw
     restart: always
