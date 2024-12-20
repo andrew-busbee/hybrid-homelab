@@ -37,9 +37,9 @@ services:
        DB_DATABASE: ${POSTGRES_DB}
        DB_USERNAME: ${POSTGRES_USER}
        DB_PASSWORD: ${POSTGRES_PASSWORD}
-       SPEEDTEST_SCHEDULE: "/30 * * * *" #Every 30 minutes     #"15 */1 * * *" #Run 15 minutes after the top of every hour
+       SPEEDTEST_SCHEDULE: "*/30 * * * *" #Every 30 minutes     #"15 */1 * * *" #Run 15 minutes after the top of every hour
        CHART_DATETIME_FORMAT: "m/j  g:i a"
-       DATETIME_FORMAT: "M jS, Y @ g:i a"
+       DATETIME_FORMAT: "M jS, Y g:i a"
        PUBLIC_DASHBOARD: "false"
     volumes:
       - speedtest_config:/config:rw
