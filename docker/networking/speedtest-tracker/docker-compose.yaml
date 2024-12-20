@@ -1,0 +1,49 @@
+services:
+  db:
+    image: postgres:17
+    container_name: SpeedTest-TRACKER-DB
+    hostname: speedtestracker-db
+    mem_limit: 1g
+    cpu_shares: 1024
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-d", "speedtest", "-U", "speedtestuser"]
+      timeout: 45s
+      interval: 10s
+      retries: 10
+    volumes:
+      - speedtest_db:/var/lib/postgresql/data:rw
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    restart: on-failure:5
+
+  speedtest-tracker:
+    image: ghcr.io/linuxserver/speedtest-tracker:latest
+    container_name: SpeedTest-TRACKER
+    healthcheck:
+     test: curl -f http://localhost:80/ || exit 1
+    environment:
+       PUID: ${PUID}
+       PGID: ${PGID}
+       APP_TIMEZONE: ${TZ}
+       DISPLAY_TIMEZONE: ${TZ}
+       APP_KEY: ${APP_KEY} #base64:xxxxxxxxx111111cccccccccccmmmmmmmm44444444t= #docker exec speedtest-tracker php /app/www/artisan key:generate --show
+       DB_CONNECTION: pgsql
+       DB_HOST: speedtestracker-db
+       DB_PORT: 5432
+       DB_DATABASE: ${POSTGRES_DB}
+       DB_USERNAME: ${POSTGRES_USER}
+       DB_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - speedtest_config:/config:rw
+    ports:
+      - ${PORT}:80
+    restart: on-failure:5
+
+volumes:
+  speedtest_db:
+  speedtest_config:
+  
