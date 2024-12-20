@@ -30,7 +30,7 @@ services:
        PGID: ${PGID}
        APP_TIMEZONE: ${TZ}
        DISPLAY_TIMEZONE: ${TZ}
-       APP_KEY: ${APP_KEY} #base64:xxxxxxxxx111111cccccccccccmmmmmmmm44444444t= #docker exec speedtest-tracker php /app/www/artisan key:generate --show
+       APP_KEY: ${APP_KEY} #base64:xxxxxxxxx111111cccccccccccmmmmmmmm44444444t= #Go to https://speedtest-tracker.dev/ or run docker exec speedtest-tracker php /app/www/artisan key:generate --show
        DB_CONNECTION: pgsql
        DB_HOST: speedtestracker-db
        DB_PORT: 5432
