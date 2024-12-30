@@ -11,7 +11,7 @@ services:
             - PGID=${PGID}
             - APP_KEY=${APP_KEY}  #Go to https://speedtest-tracker.dev/ or run docker exec speedtest-tracker php /app/www/artisan key:generate --show
             - DB_CONNECTION=sqlite
-            - SPEEDTEST_SCHEDULE="*/30 * * * *" #Every 30 minutes     #"15 */1 * * *" #Run 15 minutes after the top of every hour
+            - SPEEDTEST_SCHEDULE="15 */1 * * *"  #"15 */1 * * *" #Run 15 minutes after the top of every hour
             - CHART_DATETIME_FORMAT="m/j  g:i a"
             - DATETIME_FORMAT="F jS, Y g:i a" 
             - PUBLIC_DASHBOARD="false"
