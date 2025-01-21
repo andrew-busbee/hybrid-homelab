@@ -1,3 +1,4 @@
+# This version is purely for notifications. This will not update the containers.  I use this to notify of changes so I can manually update the containers in case there are breaking changes
 services:
   watchtower:
     image: containrrr/watchtower:latest
@@ -10,7 +11,7 @@ services:
       WATCHTOWER_INCLUDE_RESTARTING: true
       TZ: America/Chicago
       WATCHTOWER_ROLLING_RESTART: ${WATCHTOWER_ROLLING_RESTART} #true or false  #Not compatible if WATCHTOWER_MONITOR_ONLY set to true
-      WATCHTOWER_MONITOR_ONLY: ${WATCHTOWER_MONITOR_ONLY} #true or false.  False will update conatiners
+      WATCHTOWER_MONITOR_ONLY: true
       WATCHTOWER_NOTIFICATIONS: ${ WATCHTOWER_NOTIFICATIONS}
       WATCHTOWER_NOTIFICATIONS_HOSTNAME: ${ WATCHTOWER_NOTIFICATIONS_HOSTNAME}
       WATCHTOWER_NOTIFICATION_TITLE_TAG: ${WATCHTOWER_NOTIFICATION_TITLE_TAG} #Optional
