@@ -1,0 +1,46 @@
+services:
+  watchtower:
+    image: containrrr/watchtower:latest
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      WATCHTOWER_CLEANUP: true
+      WATCHTOWER_INCLUDE_STOPPED: true
+      WATCHTOWER_INCLUDE_RESTARTING: true
+      TZ: America/Chicago
+      WATCHTOWER_ROLLING_RESTART: ${WATCHTOWER_ROLLING_RESTART} #true or false  #Not compatible if WATCHTOWER_MONITOR_ONLY set to true
+      WATCHTOWER_MONITOR_ONLY: ${WATCHTOWER_MONITOR_ONLY} #true or false.  False will update conatiners
+      WATCHTOWER_NOTIFICATIONS: ${ WATCHTOWER_NOTIFICATIONS}
+      WATCHTOWER_NOTIFICATIONS_HOSTNAME: ${ WATCHTOWER_NOTIFICATIONS_HOSTNAME}
+      WATCHTOWER_NOTIFICATION_TITLE_TAG: ${WATCHTOWER_NOTIFICATION_TITLE_TAG} #Optional
+      WATCHTOWER_NOTIFICATION_URL: ${WATCHTOWER_NOTIFICATION_URL}
+      WATCHTOWER_NOTIFICATION_REPORT: true
+      # Use one or the other of the two below - schedule or poll interval
+      WATCHTOWER_SCHEDULE: 0 0 6 * * *  # Check daily at 6am TZ time
+      #WATCHTOWER_POLL_INTERVAL: 30 # Interval in seconds.  Default is 86400 (24 hours) 
+
+      WATCHTOWER_NOTIFICATION_TEMPLATE: |
+        {{- if .Report -}}
+          {{- with .Report -}}
+        {{len .Scanned}} Scanned, {{len .Updated}} Updated, {{len .Failed}} Failed
+              {{- range .Updated}}
+        - {{.Name}} ({{.ImageName}}): {{.CurrentImageID.ShortID}} updated to {{.LatestImageID.ShortID}}
+              {{- end -}}
+              {{- range .Fresh}}
+        - {{.Name}} ({{.ImageName}}): {{.State}}
+            {{- end -}}
+            {{- range .Skipped}}
+        - {{.Name}} ({{.ImageName}}): {{.State}}: {{.Error}}
+            {{- end -}}
+            {{- range .Failed}}
+        - {{.Name}} ({{.ImageName}}): {{.State}}: {{.Error}}
+            {{- end -}}
+          {{- end -}}
+        {{- else -}}
+          {{range .Entries -}}{{.Message}}{{"\n"}}{{- end -}}
+        {{- end -}}
+    restart: always
+
+
+      
