@@ -10,7 +10,7 @@ services:
       - config:/config
     ports:
       - ${HTTP}:80 #HTTP
-      - ${HTTPS}:443 #HTTPS
+      #- ${HTTPS}:443 #HTTPS
     restart: unless-stopped
 volumes:
   config:
