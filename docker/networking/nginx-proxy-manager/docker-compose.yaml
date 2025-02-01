@@ -24,7 +24,6 @@ services:
       - nginx-letsencrypt:/etc/letsencrypt
 
 volumes:
-  config:
   nginx-data:
     name: nginx-data
     external: true   
