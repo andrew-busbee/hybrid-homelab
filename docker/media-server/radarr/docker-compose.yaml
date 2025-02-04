@@ -9,7 +9,7 @@ services:
     volumes:
       - config:/config
       - movies:/movies   
-      #- movieRecycle:/recycle 
+      - movieRecycle:/recycle 
       - complete:/complete 
       - movieLibrary:/plexMovieLibrary
     ports:
@@ -21,9 +21,9 @@ volumes:
   movies:
     name: movies  
     external: true   
-  #movieRecycle:
-  #  name: movieRecycle  
-  #  external: true  
+  movieRecycle:
+    name: movieRecycle  
+    external: true  
   complete:
     name: complete
     external: true    
