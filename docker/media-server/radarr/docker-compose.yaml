@@ -12,7 +12,6 @@ services:
       - movieRecycle:/recycle 
       - complete:/complete 
       - movieLibrary:/plexMovieLibrary
-      - moviesHorror:/plexMoviesHorror #Optional
     ports:
       - ${PORT_NUMBER}:7878/tcp
     restart: always
@@ -31,6 +30,4 @@ volumes:
   movieLibrary:
     name: movieLibrary 
     external: true     
-  moviesHorror:
-    name: moviesHorror
-    external: true  
+
